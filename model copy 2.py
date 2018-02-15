@@ -20,6 +20,12 @@ def dot(x, W):
     dot = tf.matmul(a, b)
     return dot
 
+def add_layer(X, input_size, output_size, activator):
+    w = weight_variable([input_size, output_size])
+    b = bias_variable([output_size])
+    layer = activator(dot(X, w) + b)
+    self.X = layer
+
 
 class Paragragh(object):
 
@@ -27,12 +33,31 @@ class Paragragh(object):
         self.config = config
         self.X = tf.placeholder(tf.float32, [config.input_size])
         self.Y = tf.placeholder(tf.float32, [2, ])
+    
 
-    def add_layer(self, input_size, output_size, activator):
-        w = weight_variable([input_size, output_size])
-        b = bias_variable([output_size])
-        layer = activator(dot(self.X, w) + b)
-        self.X = layer
+    def model():
+        # n个词语，都是input_size
+        px1 = tf.placeholder(tf.float32,[None,config.input_size])
+        px2 = tf.placeholder(tf.float32,[None,config.input_size])
+
+        px1
+        px1 px2都是不确定序列
+        def nn():
+            x2 = activator(tf.matmul(px,w)+b)
+            x3 = activator( tf.matmul(x2,w2) + b2 )
+        
+        每个乘以神经网络 然后mean 然后相减
+        diff = nned_px - nned_px2 
+        
+        相减之后的结果再乘一个神经网络，得到两个值
+        nned_diff = [0 ,0.89]
+        
+        py = [0 ,1]
+
+        cost = - tf.log(1-(py-nned_diff))
+
+
+
 
     def add_dropout(self, dropout_rate):
         self.X = tf.nn.dropout(self.X, dropout_rate)

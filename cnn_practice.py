@@ -57,7 +57,9 @@ sess.run(init)
 costList = []
 for i in range(500):
     batch_xs, batch_ys = mnist.train.next_batch(100)
+    
     sess.run(train_once, feed_dict = {px: batch_xs, py: batch_ys,keep_prob: 0.5})        
+    
     costList.append(sess.run( cost, feed_dict ={px: batch_xs, py: batch_ys,keep_prob: 1}))
     if i%100 == 0:
         # 计算准确率，是拿输出的结果比对一下
