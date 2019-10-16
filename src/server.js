@@ -1,12 +1,8 @@
 import express from "express";
 import path from "path";
-
 import React from "react";
 import { renderToString } from "react-dom/server";
-// import Layout from "./components/Layout";
-const Layout = function(){
-    return (<div>abc</div>)
-}
+import Layout from "./components/Layout";
 const app = express();
 
 app.use( express.static( path.resolve( __dirname, "../dist" ) ) );
